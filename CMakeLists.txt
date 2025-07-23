@@ -2,15 +2,7 @@ cmake_minimum_required(VERSION 4.0.3)
 project(RaceControlSystem VERSION 0.0.1 LANGUAGES CXX)
 
 find_package(Threads REQUIRED)
-
-set(PAHO_DIR ~/opt/pahomqtt/)
-find_package(PahoMqttCpp REQUIRED PATHS ~/opt/pahomqtt/lib/cmake)
-# include_directories(${PAHO_DIR}/include)
-
-# include_directories(${PAHO_DIR}/include)
-# add_library(MQTT SHARED IMPORTED)
-# # target_include_directories(MQTT  ${PAHO_DIR}/include)
-# link_directories(${PAHO_DIR}/lib)
+find_package(PahoMqttCpp REQUIRED PATHS ${PAHO_DIR})
 
 add_library(RCS_Lib src/Track.cpp src/RCS.cpp src/Server.cpp)
 target_include_directories(RCS_Lib PUBLIC
