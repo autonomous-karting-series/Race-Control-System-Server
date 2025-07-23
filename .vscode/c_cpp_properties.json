@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "~/opt/pahomqtt/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
