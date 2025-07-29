@@ -67,7 +67,10 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
-    },
-    "ros.distro": "galactic"
+        "variant": "cpp",
+        "format": "cpp",
+        "charconv": "cpp",
+        "netfwd": "cpp",
+        "span": "cpp"
+    }
 }

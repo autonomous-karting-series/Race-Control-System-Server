@@ -4,7 +4,9 @@ project(RaceControlSystem VERSION 0.0.1 LANGUAGES CXX)
 find_package(Threads REQUIRED)
 find_package(PahoMqttCpp REQUIRED PATHS ${PAHO_DIR})
 
-add_library(RCS_Lib src/Track.cpp src/RCS.cpp src/Server.cpp)
+include_directories(external/mongoose/)
+
+add_library(RCS_Lib src/Track.cpp src/RCS.cpp src/MQTT.cpp)
 target_include_directories(RCS_Lib PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )

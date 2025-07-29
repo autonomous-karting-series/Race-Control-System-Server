@@ -32,13 +32,13 @@ namespace RCS
             if (m_state == ControllerState::kInitiated)
             {
                 std::cout << "Initialized, setting state to healthy and track to Orange Flag -- RC Only.";
-                set_flag(m_track, Flag::kOrange);
+                set_flag(get_track(), Flag::kOrange);
             }
 
             if (m_state == ControllerState::kHealthy)
             {
                 std::cout << "Controller Healthy, setting track to Green Flag -- Autonomous allowed, following race procedure";
-                set_flag(m_track, Flag::kGreen);
+                set_flag(get_track(), Flag::kGreen);
 
                 // listen for status across sectors
             }
@@ -47,7 +47,7 @@ namespace RCS
             {
                 // kart had problem/something wrong, wait for healthy
                 std::cout << "Controller Unhealthy, setting track to Orange Flag -- RC Only";
-                set_flag(m_track, Flag::kOrange);
+                set_flag(get_track(), Flag::kOrange);
             }
 
         };

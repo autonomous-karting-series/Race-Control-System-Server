@@ -30,7 +30,6 @@ namespace RCS
         track::Track& get_track();
         ControllerState start_controller();
     };
-
 }
 
 #endif

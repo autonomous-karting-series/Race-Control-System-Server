@@ -1,2 +1,7 @@
-build
-out
+# CMAKE directories
+build/
+out/
+
+# Docker Compose directories
+data/
+log/
