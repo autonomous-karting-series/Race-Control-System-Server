@@ -26,7 +26,7 @@ int main()
 
 	// for (int iter = 0; iter < sectors.size(); iter++)
 	// {
-	// 	std::cout << "Sector " << get_flag_str<Sector>(sectors.at(iter)) << ";\n";
+	//  std::cout << "Sector " << sectors.at(iter).get_id() << " flag status: " << get_flag_str<Sector>(sectors.at(iter)) << ";\n";
 	// };
 	// cout << "End\n";
 
