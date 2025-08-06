@@ -20,24 +20,11 @@ namespace track
         kChequered
     };
 
-    Flag resolveFlag(std::string input)
-    {
-        static const std::map<std::string, Flag> flagStrings {
-            { "red", Flag::kRed },
-            { "yellow", Flag::kYellow },
-            { "orange", Flag::kOrange },
-            { "green", Flag::kGreen },
-            { "black", Flag::kBlack },
-            { "white", Flag::kWhite },
-            { "chequered", Flag::kChequered }
-        };
+    Flag resolveFlag(const char* input);
 
-        auto itr = flagStrings.find(input);
-        if( itr != flagStrings.end() ) {
-            return itr->second;
-        }
-        return Flag::kRed;
-    }
+    const char* get_flag_str(const Flag &flag);
+
+    struct track_topic;
 
     class Sector
     {
@@ -66,6 +53,10 @@ namespace track
         Flag get_flag() const;
     };
 
+
+    // Don't need -- playing around
+    #pragma region
+
     template <class T>
     void set_flag(T &source, Flag flag)
     {
@@ -84,38 +75,7 @@ namespace track
         return get_flag_str(get_flag(source));
     };
 
-    const std::string get_flag_str(const Flag &flag);
-
-    struct track_topic
-    {
-        std::string m_name = "track";
-
-        std::string create_msg(Track track)
-        {
-            std::ostringstream ss;
-            ss << get_flag_str(track) << ";";
-
-            for (Sector sector : track.get_sectors())
-                ss << get_flag_str(sector) << ";";
-
-            return ss.str();
-        };
-
-        // Track read_msg(std::string msg)
-        // {
-        //     Track track(std::count(msg.begin(), msg.end(), ";"));
-        //     char *msg_contents = std::strtok(nullptr, ";");
-
-        //     track.set_flag(resolveFlag(msg_contents));
-
-        //     for (Sector sector : track.get_sectors())
-        //     {
-        //         set_flag(sector, resolveFlag(std::strtok(nullptr, ";")));
-        //     }
-
-        //     return track;
-        // };
-    };
+    #pragma endregion
 }
 
 #endif
