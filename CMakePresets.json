@@ -9,6 +9,8 @@
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
                 "CMAKE_BUILD_TYPE": "Debug",
                 "PAHO_DIR": "~/opt/pahomqtt"
             }
