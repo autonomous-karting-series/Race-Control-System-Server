@@ -9,7 +9,7 @@ services:
     stdin_open: true
     restart: always
     volumes:
-      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/config:/mosquitto/config:ro
       - ./mosquitto/log:/mosquitto/log
       - ./mosquitto/data:/mosquitto/data
     ports:
