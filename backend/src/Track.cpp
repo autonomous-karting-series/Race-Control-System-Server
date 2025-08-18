@@ -39,36 +39,38 @@ namespace track
         }
     }
 
-    struct track_topic
+    Track_Message::Track_Message()
     {
-        std::string m_name = "track";
+        topic_name = "track";
+    }
 
-        std::string create_msg(Track track)
+    void Track_Message::create_msg(Track track)
+    {
+        std::ostringstream ss;
+        ss << get_flag_str(track) << ";";
+
+        for (Sector sector : track.get_sectors())
         {
-            std::ostringstream ss;
-            ss << get_flag_str(track) << ";";
+            ss << get_flag_str(sector) << ";";
+        }
 
-            for (Sector sector : track.get_sectors())
-                ss << get_flag_str(sector) << ";";
-
-            return ss.str();
-        };
-
-        // Track read_msg(std::string msg)
-        // {
-        //     Track track(std::count(msg.begin(), msg.end(), ";"));
-        //     char *msg_contents = std::strtok(nullptr, ";");
-
-        //     track.set_flag(resolveFlag(msg_contents));
-
-        //     for (Sector sector : track.get_sectors())
-        //     {
-        //         set_flag(sector, resolveFlag(std::strtok(nullptr, ";")));
-        //     }
-
-        //     return track;
-        // };
+        message = ss.str();
     };
+
+    // void Track_Message::read_msg(const char* msg)
+    //     // {
+    //     //     Track track(std::count(msg.begin(), msg.end(), ";"));
+    //     //     char *msg_contents = std::strtok(nullptr, ";");
+
+    //     //     track.set_flag(resolveFlag(msg_contents));
+
+    //     //     for (Sector sector : track.get_sectors())
+    //     //     {
+    //     //         set_flag(sector, resolveFlag(std::strtok(nullptr, ";")));
+    //     //     }
+
+    //     //     return track;
+    //     // };
 
     #pragma endregion
 
@@ -95,7 +97,7 @@ namespace track
         m_flag = Flag::kRed;
 
         m_sectors.reserve(sector_count); // Single allocation ahead of assignment
-        for (int i = 1; i == sector_count; i++)
+        for (int i = 1; i <= sector_count; i++)
         {
             m_sectors.emplace_back(i); // Passes Sector ID over to Vector index.
         }

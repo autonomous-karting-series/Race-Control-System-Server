@@ -47,7 +47,7 @@ void MQTTClient::disconnect()
     try {
         auto toks = m_client->get_pending_delivery_tokens();
         if (!toks.empty())
-            std::cout << "Error: There are pending delivery tokens!" << std::endl;
+            std::cout << "Warning: There are pending delivery tokens! Continuing disconnect." << std::endl;
 
         // Disconnect
         std::cout << "\nDisconnecting..." << std::endl;
@@ -58,6 +58,20 @@ void MQTTClient::disconnect()
         std::cerr << exc.what() << std::endl;
         return;
     }
+}
+
+void MQTTClient::publish_msg(const MQTT_Message& msg) const
+{
+    mqtt::message_ptr pubmsg = mqtt::make_message(msg.topic_name, msg.message);
+
+    std::cout << "\nSending message..." << std::endl;
+    mqtt::delivery_token_ptr pubtok = m_client->publish(msg.topic_name, msg.message, 1, false);
+    std::cout << "  ...with token: " << pubtok->get_message_id() << std::endl;
+    std::cout << "  ...on topic: " << pubtok->get_message()->get_topic() << std::endl;
+    std::cout << "  ...for message with " << pubtok->get_message()->get_payload().size()
+        << " bytes" << std::endl;
+    pubtok->wait_for(TIMEOUT); // waiting for send for QOS... should send on thread???
+    std::cout << "  ...OK" << std::endl;
 }
 
 string MQTTClient::get_client_id() const

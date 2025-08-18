@@ -23,6 +23,12 @@ const int QOS = 1;
 const auto TIMEOUT = std::chrono::seconds(10);
 const auto INTERVAL = std::chrono::seconds(30);
 
+struct MQTT_Message
+{
+    const char* topic_name;
+    string message;
+};
+
 class MQTTClient
 {
 
@@ -38,6 +44,8 @@ class MQTTClient
         };
         void connect();
         void disconnect();
+
+        void publish_msg(const MQTT_Message& msg) const;
 
         string get_client_id() const;
         string get_server_uri() const;
