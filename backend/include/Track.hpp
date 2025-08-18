@@ -7,6 +7,8 @@
 #include <vector>
 #include <iostream>
 
+#include "MQTT.hpp"
+
 namespace track
 {
     enum class Flag
@@ -23,8 +25,6 @@ namespace track
     Flag resolveFlag(const char* input);
 
     const char* get_flag_str(const Flag &flag);
-
-    struct track_topic;
 
     class Sector
     {
@@ -53,6 +53,13 @@ namespace track
         Flag get_flag() const;
     };
 
+    struct Track_Message: MQTT_Message
+    {
+        Track_Message();
+
+        void create_msg(Track track);
+        // void read_msg(const char* msg);
+    };
 
     // Don't need -- playing around
     #pragma region
@@ -64,13 +71,13 @@ namespace track
     };
 
     template <class T>
-    const Flag get_flag(T &source)
+    const Flag get_flag(const T& source)
     {
         return source.get_flag();
     };
 
     template <class T>
-    const std::string get_flag_str(const T &source)
+    const std::string get_flag_str(const T& source)
     {
         return get_flag_str(get_flag(source));
     };

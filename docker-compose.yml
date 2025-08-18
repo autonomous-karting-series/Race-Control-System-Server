@@ -9,12 +9,12 @@ services:
     stdin_open: true
     restart: always
     volumes:
-      - ./config/:/mosquitto/config/
-      - ./log/:/mosquitto/log/
-      - ./data:/mosquitto/data/
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/data:/mosquitto/data
     ports:
       - 1883:1883
-      - 9001:9001
+      # - 9001:9001 # Websocket support
 
   ## TODO: Add docker execution for launching the python server
   # server:
