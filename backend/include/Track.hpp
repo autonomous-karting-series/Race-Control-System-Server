@@ -2,12 +2,9 @@
 #define RACECONTROLSERVER_TRACK_H_
 
 #include <string>
-#include <sstream>
 #include <map>
 #include <vector>
 #include <iostream>
-
-#include "MQTT.hpp"
 
 namespace track
 {
@@ -51,15 +48,10 @@ namespace track
         std::vector<Sector> get_sectors() const;
         void set_flag(Flag new_flag);
         Flag get_flag() const;
+        // void message_callback(Track_Message message);
     };
 
-    struct Track_Message: MQTT_Message
-    {
-        Track_Message();
 
-        void create_msg(Track track);
-        // void read_msg(const char* msg);
-    };
 
     // Don't need -- playing around
     #pragma region
