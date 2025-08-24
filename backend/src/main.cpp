@@ -1,31 +1,32 @@
 
 #include <iostream>
-#include <string>
 #include <stdio.h>
 #include <thread>
 
 #include "RCS.hpp"
 #include "MQTT.hpp"
 
-using namespace std;
-
 #define ENABLE_MQTT true
-#define ENABLE_RCS true
+#define ENABLE_RCS false
 
 int main()
 {
 
 	#if ENABLE_MQTT
 
-	// need to make MQTTClient a singleton as well.
-	MQTTClient mqttClient(DFLT_SERVER_URI, "RCS_Server", "admin", "admin");
-	mqttClient.connect();
+	MQTTClient::Init(DFLT_SERVER_URI.c_str(), "RCS_Server", "admin", "admin");
 
+	auto& mqttClient = MQTTClient::GetInstance();
+	mqttClient.Connect();
+
+	// mqttClient.SubscribeWithCallback("kart/+", track::message_callback);
+	mqttClient.SubscribeWithCallback("track", track::message_callback);
 
 	track::Track track(4);
 	track::Track_Message track_msg;
 	track_msg.create_msg(track);
-	mqttClient.publish_msg(track_msg);
+
+	mqttClient.PublishMessage(track_msg);
 
 	#endif
 
@@ -53,11 +54,13 @@ int main()
 	#endif
 
 	#if ENABLE_MQTT
-
-	mqttClient.disconnect();
+	std::cout << "Enter \"Q\" to quit program" << std::endl;
+	while (std::tolower(std::cin.get()) != 'q')
+		;
+	mqttClient.Disconnect();
 
 	#endif
 
-	cin.get();
+	// cin.get();
     return 0;
 }

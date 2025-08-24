@@ -29,21 +29,6 @@ namespace RCS
     #pragma endregion
 
     #pragma region Controller Static
-    RaceController::RaceController()
-    {
-        assert(!s_Controller_Instance);
-
-        std::cout << "Constructing RCS Instance" << std::endl;
-
-        m_state = ControllerState::kUninitiated;
-    }
-
-    RaceController::~RaceController()
-    {
-        assert(s_Controller_Instance);
-
-        std::cout << "Deleting RCS Instance" << std::endl;
-    }
 
     RaceController& RaceController::GetInstance()
     {
@@ -154,6 +139,23 @@ namespace RCS
     #pragma endregion
 
     #pragma region Controller Non-Static
+
+    RaceController::RaceController()
+    {
+        assert(!s_Controller_Instance);
+
+        std::cout << "Constructing RCS Instance" << std::endl;
+
+        m_state = ControllerState::kUninitiated;
+    }
+
+    RaceController::~RaceController()
+    {
+        assert(s_Controller_Instance);
+
+        std::cout << "Deleting RCS Instance" << std::endl;
+    }
+
     ControllerState& RaceController::get_controller_state() const
     {
         assert(s_Controller_Instance);
