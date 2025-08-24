@@ -7,7 +7,6 @@ include_directories(PahoMqttCpp ${PAHO_DIR}/include)
 
 add_library(MQTT_Lib
   ${SOURCES}/src/MQTT.cpp
-  ${SOURCES}/src/MQTT_Messages.cpp
 )
 target_include_directories(MQTT_Lib PUBLIC
   ${SOURCES}/include

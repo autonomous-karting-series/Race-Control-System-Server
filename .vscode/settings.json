@@ -71,6 +71,7 @@
         "format": "cpp",
         "charconv": "cpp",
         "netfwd": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "forward_list": "cpp"
     }
 }
