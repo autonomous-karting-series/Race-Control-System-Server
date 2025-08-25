@@ -53,13 +53,20 @@ namespace track
         Flag get_flag() const;
     };
 
+
     struct Track_Message: MQTT_Message
     {
         Track_Message();
+        Track_Message(const MQTT_Message& msg) : MQTT_Message()
+        {
+            message = msg.message;
+        };
 
-        void create_msg(Track track);
+        void create_msg(track::Track track);
         // void read_msg(const char* msg);
     };
+
+    void message_callback(MQTT_Message message);
 
     // Don't need -- playing around
     #pragma region

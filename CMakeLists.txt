@@ -3,11 +3,18 @@ project(RaceControlSystem VERSION 0.0.1 LANGUAGES CXX)
 
 find_package(Threads REQUIRED)
 find_package(PahoMqttCpp REQUIRED PATHS ${PAHO_DIR})
+include_directories(PahoMqttCpp ${PAHO_DIR}/include)
+
+add_library(MQTT_Lib
+  ${SOURCES}/src/MQTT.cpp
+)
+target_include_directories(MQTT_Lib PUBLIC
+  ${SOURCES}/include
+)
 
 add_library(RCS_Lib
   ${SOURCES}/src/RCS.cpp
   ${SOURCES}/src/Track.cpp
-  ${SOURCES}/src/MQTT.cpp
 )
 target_include_directories(RCS_Lib PUBLIC
   ${SOURCES}/include
@@ -18,6 +25,7 @@ add_executable(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC RCS_Lib)
+target_link_libraries(${PROJECT_NAME} PUBLIC MQTT_Lib)
 target_link_libraries(${PROJECT_NAME} PUBLIC PahoMqttCpp::paho-mqttpp3)
 
 # install(TARGETS
