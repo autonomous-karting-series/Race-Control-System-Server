@@ -5,3 +5,9 @@ out/
 # Docker Compose directories
 data/
 log/
+
+
+# Node
+
+node_modules/
+package-lock.json

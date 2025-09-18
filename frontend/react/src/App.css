@@ -1,0 +1,81 @@
+/* Dashboard -- Page title and subtitle*/
+body {
+  background-color: #282c34;
+}
+
+.dashboard {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    margin-bottom: 32px;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #1976d2;
+    margin-bottom: 8px;
+}
+
+.dashboard-subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Status */
+.status-list {
+    list-style: none;
+}
+
+.status-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.status-item li {
+    display: table-cell;
+}
+
+/* .status-item:last-child {
+    border-bottom: none;
+} */
+
+.connection-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.flag-indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 0%;
+    margin-left: 12px;
+    justify-self: right;
+}
+
+.track-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 0%;
+    margin-left: 12px;
+    justify-self: right;
+}
+
+.status-online { background: green; }
+.status-connecting { background: yellow; }
+.status-offline { background: red; }
+
+
+.flag-green { background: green; }
+.flag-yellow { background: yellow; }
+.flag-orange { background: orange; }
+.flag-red { background: red; }
+.flag-black { background: black; }

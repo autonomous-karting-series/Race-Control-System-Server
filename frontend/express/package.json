@@ -1,0 +1,17 @@
+{
+  "name": "rcs_express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "^4.21.2",
+    "http-errors": "~1.6.3",
+    "moment-timezone": "^0.6.0",
+    "mqtt": "^5.14.1",
+    "ws": "^8.18.3"
+  }
+}
